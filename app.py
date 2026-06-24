@@ -1,6 +1,6 @@
 """
 Students' Social Network Profile  Clustering App
-Applied Data Science, ML & AI | E&ICT Academy, IIT Guwahati
+
 """
 
 import os

@@ -3,6 +3,7 @@
 **Course:** Applied Data Science, ML & AI
 **Institute:** E&ICT Academy, IIT Guwahati
 
+**App Link :** https://students-social-network-profile-clustering-app.streamlit.app/
 ---
 
 ## 📌 Project Overview

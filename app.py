@@ -157,12 +157,9 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# ── Header ─────────────────────────────────────────────────────────────────────
 st.markdown("""
 <div class="main-header">
     <h1>🎓 Students' Social Network Profile Clustering</h1>
-    <p class="course">Applied Data Science, ML & AI</p>
-    <p class="inst">E&ICT Academy, IIT Guwahati</p>
     <p class="algo">KMeans &nbsp;·&nbsp; Hierarchical &nbsp;·&nbsp; DBSCAN</p>
 </div>
 """, unsafe_allow_html=True)

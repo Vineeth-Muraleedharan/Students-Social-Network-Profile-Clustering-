@@ -30,129 +30,77 @@ st.set_page_config(
 # ── CSS + Background ───────────────────────────────────────────────────────────
 st.markdown("""
 <style>
-    /* ── Background ── */
     [data-testid="stAppViewContainer"] {
         background: linear-gradient(135deg, #0a0f1e 0%, #0d1b2a 40%, #112240 70%, #0a192f 100%);
         background-attachment: fixed;
     }
     [data-testid="stAppViewContainer"]::before {
         content: "";
-        position: fixed;
-        top: 0; left: 0; right: 0; bottom: 0;
+        position: fixed; top: 0; left: 0; right: 0; bottom: 0;
         background-image:
             radial-gradient(circle at 20% 20%, rgba(46,84,150,0.15) 0%, transparent 50%),
-            radial-gradient(circle at 80% 80%, rgba(31,56,100,0.2) 0%, transparent 50%),
+            radial-gradient(circle at 80% 80%, rgba(31,56,100,0.2)  0%, transparent 50%),
             radial-gradient(circle at 60% 30%, rgba(14,165,233,0.05) 0%, transparent 40%);
-        pointer-events: none;
-        z-index: 0;
+        pointer-events: none; z-index: 0;
     }
-    [data-testid="stHeader"]           { background: transparent !important; }
-    [data-testid="collapsedControl"]   { display: none; }
-    [data-testid="stDataFrame"]        { overflow-x: auto !important; }
+    [data-testid="stHeader"]         { background: transparent !important; }
+    [data-testid="collapsedControl"] { display: none; }
+    [data-testid="stDataFrame"]      { overflow-x: auto !important; }
     .block-container {
         padding: 1rem 1.5rem 3rem 1.5rem !important;
-        max-width: 100% !important;
-        position: relative; z-index: 1;
+        max-width: 100% !important; position: relative; z-index: 1;
     }
-
-    /* ── Header ── */
     .main-header {
         background: linear-gradient(135deg, rgba(31,56,100,0.95) 0%, rgba(46,84,150,0.95) 100%);
-        padding: 1.8rem 2rem; border-radius: 14px;
-        margin-bottom: 1.2rem; text-align: center;
+        padding: 1.8rem 2rem; border-radius: 14px; margin-bottom: 1.2rem; text-align: center;
         border: 1px solid rgba(100,150,220,0.3);
-        box-shadow: 0 8px 32px rgba(0,0,0,0.4);
-        backdrop-filter: blur(10px);
+        box-shadow: 0 8px 32px rgba(0,0,0,0.4); backdrop-filter: blur(10px);
     }
-    .main-header h1   { color: #ffffff; font-size: clamp(1.3rem, 4vw, 2rem); margin: 0 0 0.4rem 0; }
-    .main-header .course { color: #ffffff; font-size: clamp(0.85rem, 2.5vw, 1.05rem);
-                           font-weight: 700; margin: 0 0 0.15rem 0; }
-    .main-header .inst   { color: #BDD7EE; font-size: clamp(0.78rem, 2.2vw, 0.92rem);
-                           margin: 0 0 0.15rem 0; }
-    .main-header .algo   { color: #93B8D8; font-size: clamp(0.7rem, 2vw, 0.82rem); margin: 0; }
-
-    /* ── Settings card ── */
-    .settings-card {
-        background: rgba(255,255,255,0.04);
-        border: 1px solid rgba(100,150,220,0.2);
-        border-radius: 10px; padding: 1rem 1.2rem;
-        margin-bottom: 1rem; backdrop-filter: blur(6px);
-    }
-
-    /* ── Section headers ── */
+    .main-header h1     { color:#ffffff; font-size:clamp(1.3rem,4vw,2rem); margin:0 0 0.4rem 0; }
+    .main-header .course{ color:#ffffff; font-size:clamp(0.85rem,2.5vw,1.05rem); font-weight:700; margin:0 0 0.15rem 0; }
+    .main-header .inst  { color:#BDD7EE; font-size:clamp(0.78rem,2.2vw,0.92rem); margin:0 0 0.15rem 0; }
+    .main-header .algo  { color:#93B8D8; font-size:clamp(0.7rem,2vw,0.82rem); margin:0; }
     .sec {
-        background: rgba(46,84,150,0.25);
-        border-left: 4px solid #4A90D9;
-        padding: 0.45rem 0.9rem; border-radius: 5px;
-        font-weight: bold; color: #BDD7EE;
-        margin: 1rem 0 0.6rem 0;
-        font-size: clamp(0.8rem, 2.5vw, 0.95rem);
-        backdrop-filter: blur(4px);
+        background: rgba(46,84,150,0.25); border-left: 4px solid #4A90D9;
+        padding: 0.45rem 0.9rem; border-radius: 5px; font-weight: bold;
+        color: #BDD7EE; margin: 1rem 0 0.6rem 0;
+        font-size: clamp(0.8rem,2.5vw,0.95rem); backdrop-filter: blur(4px);
     }
-
-    /* ── Info boxes ── */
     .box-green {
-        background: rgba(76,175,80,0.12);
-        border-left: 4px solid #4CAF50;
-        padding: 0.7rem 1rem; border-radius: 6px;
-        color: #A5D6A7; margin: 0.5rem 0;
-        font-size: clamp(0.75rem, 2.2vw, 0.88rem);
+        background: rgba(76,175,80,0.12); border-left: 4px solid #4CAF50;
+        padding: 0.7rem 1rem; border-radius: 6px; color: #A5D6A7;
+        margin: 0.5rem 0; font-size: clamp(0.75rem,2.2vw,0.88rem);
     }
     .box-blue {
-        background: rgba(21,101,192,0.15);
-        border-left: 4px solid #42A5F5;
-        padding: 0.7rem 1rem; border-radius: 6px;
-        color: #90CAF9; margin: 0.5rem 0;
-        font-size: clamp(0.75rem, 2.2vw, 0.88rem);
+        background: rgba(21,101,192,0.15); border-left: 4px solid #42A5F5;
+        padding: 0.7rem 1rem; border-radius: 6px; color: #90CAF9;
+        margin: 0.5rem 0; font-size: clamp(0.75rem,2.2vw,0.88rem);
     }
-
-    /* ── Metrics ── */
     [data-testid="stMetric"] {
-        background: rgba(255,255,255,0.05);
-        border: 1px solid rgba(100,150,220,0.2);
-        border-radius: 10px; padding: 0.6rem 0.8rem;
-        backdrop-filter: blur(4px);
+        background: rgba(255,255,255,0.05); border: 1px solid rgba(100,150,220,0.2);
+        border-radius: 10px; padding: 0.6rem 0.8rem; backdrop-filter: blur(4px);
     }
     [data-testid="stMetricLabel"] { color: #93B8D8 !important; }
-    [data-testid="stMetricValue"] { color: #ffffff !important; }
-
-    /* ── Tabs ── */
+    [data-testid="stMetricValue"] { color: #ffffff  !important; }
     .stTabs [data-baseweb="tab-list"] {
         gap: 4px; overflow-x: auto; flex-wrap: nowrap;
-        background: rgba(255,255,255,0.03);
-        border-radius: 8px; padding: 4px;
+        background: rgba(255,255,255,0.03); border-radius: 8px; padding: 4px;
     }
     .stTabs [data-baseweb="tab"] {
-        background: rgba(46,84,150,0.2);
-        border-radius: 6px; padding: 8px 16px;
-        font-weight: 600; color: #93B8D8;
-        white-space: nowrap; font-size: clamp(0.72rem, 2.5vw, 0.88rem);
-        border: 1px solid rgba(100,150,220,0.15);
+        background: rgba(46,84,150,0.2); border-radius: 6px; padding: 8px 16px;
+        font-weight: 600; color: #93B8D8; white-space: nowrap;
+        font-size: clamp(0.72rem,2.5vw,0.88rem); border: 1px solid rgba(100,150,220,0.15);
     }
     .stTabs [aria-selected="true"] {
-        background: rgba(46,84,150,0.8) !important;
-        color: white !important;
+        background: rgba(46,84,150,0.8) !important; color: white !important;
         border-color: rgba(100,150,220,0.4) !important;
     }
-
-    /* ── Dataframes ── */
-    [data-testid="stDataFrame"] > div {
-        border-radius: 8px;
-        border: 1px solid rgba(100,150,220,0.2) !important;
-    }
-
-    /* ── Expander ── */
     [data-testid="stExpander"] {
         background: rgba(255,255,255,0.04) !important;
         border: 1px solid rgba(100,150,220,0.2) !important;
         border-radius: 10px !important;
     }
-
-    /* ── Selectbox & number input labels ── */
     label { color: #BDD7EE !important; }
-
-    /* ── Success / warning ── */
-    [data-testid="stAlert"] { border-radius: 8px !important; }
 </style>
 """, unsafe_allow_html=True)
 
@@ -186,53 +134,45 @@ THEMES = {
 }
 THEME_COLORS = ['#4C72B0','#DD8452','#55A868','#C44E52','#8172B2','#937860']
 
+# ── File Upload ────────────────────────────────────────────────────────────────
+uploaded = st.file_uploader("📂 Upload **Clustering_Marketing.csv**", type=["csv"])
+
+if uploaded is None:
+    st.markdown('<div class="box-blue">📁 Upload <b>Clustering_Marketing.csv</b> above to begin.</div>',
+                unsafe_allow_html=True)
+    st.stop()
+
 # ── Model Settings ─────────────────────────────────────────────────────────────
 with st.expander("⚙️ Model Settings", expanded=False):
     c1, c2, c3 = st.columns(3)
-
     with c1:
         st.markdown("**🔵 KMeans**")
-        k_max = st.selectbox(
-            "Max K to evaluate",
-            options=[5, 8, 10, 12, 15],
-            index=2
-        )
-        pca_var = st.selectbox(
-            "PCA variance threshold",
-            options=[85, 90, 95],
-            index=1,
-            format_func=lambda x: f"{x}%"
-        )
-
+        k_max   = st.selectbox("Max K to evaluate",
+                               options=[5, 8, 10, 12, 15], index=2)
+        pca_var = st.selectbox("PCA variance threshold",
+                               options=[85, 90, 95], index=1,
+                               format_func=lambda x: f"{x}%")
     with c2:
         st.markdown("**📊 Evaluation**")
-        samp_size = st.selectbox(
-            "Silhouette sample size",
-            options=[1000, 2000, 3000, 5000],
-            index=2
-        )
-        n_init = st.selectbox(
-            "KMeans n_init runs",
-            options=[5, 10, 20],
-            index=1
-        )
-
+        samp_size = st.selectbox("Silhouette sample size",
+                                  options=[1000, 2000, 3000, 5000], index=2)
+        n_init    = st.selectbox("KMeans n_init runs",
+                                  options=[5, 10, 20], index=1)
     with c3:
         st.markdown("**🔵 DBSCAN**")
-        eps_pct = st.selectbox(
-            "Eps percentile",
-            options=[80, 85, 90, 95],
-            index=2,
-            format_func=lambda x: f"{x}th percentile"
-        )
-        min_samp = st.number_input(
-            "Min samples", min_value=3, max_value=20, value=5, step=1
-        )
+        eps_pct  = st.selectbox("Eps percentile",
+                                 options=[80, 85, 90, 95], index=2,
+                                 format_func=lambda x: f"{x}th percentile")
+        min_samp = st.number_input("Min samples",
+                                    min_value=3, max_value=20, value=5, step=1)
 
 # ── Load & Silent Preprocessing ────────────────────────────────────────────────
 @st.cache_data
-def load_and_preprocess(path):
-    df = pd.read_csv(path)
+def load_and_preprocess(file):
+    df = pd.read_csv(file)
+
+    # Replace string "None" with actual NaN
+    df = df.replace('None', np.nan)
 
     # Fix dtypes & missing values
     df['gender'].fillna(df['gender'].mode()[0], inplace=True)
@@ -259,16 +199,19 @@ def load_and_preprocess(path):
     df_t['gender_enc'] = le.fit_transform(df['gender'])
     df_t['gradyear']   = df['gradyear'].values
 
-    # Scale
+    # Build feature matrix + safety fillna
     features = ['gradyear', 'age', 'gender_enc', 'NumberOffriends'] + KEYWORD_COLS
     X        = df_t[features].copy()
+    X        = X.fillna(X.median())
+
+    # Scale
     scaler   = StandardScaler()
     X_scaled = scaler.fit_transform(X)
 
     return df, X_scaled
 
 with st.spinner("Loading and preprocessing data..."):
-    df, X_scaled_arr = load_and_preprocess("Clustering_Marketing.csv")
+    df, X_scaled_arr = load_and_preprocess(uploaded)
 
 # Add theme columns
 for theme, cols in THEMES.items():
@@ -280,14 +223,7 @@ st.markdown(f"""
 Missing values filled · log1p applied · Winsorized · StandardScaled
 </div>""", unsafe_allow_html=True)
 
-# ── Tabs ───────────────────────────────────────────────────────────────────────
-tab1, tab2, tab3 = st.tabs([
-    "📊 Data Overview",
-    "🤖 Clustering Results",
-    "🏆 Method Comparison"
-])
-
-# ── Plot style ─────────────────────────────────────────────────────────────────
+# ── Plot Style ─────────────────────────────────────────────────────────────────
 plt.rcParams.update({
     'figure.facecolor': '#0d1b2a',
     'axes.facecolor':   '#112240',
@@ -299,6 +235,13 @@ plt.rcParams.update({
     'grid.color':       '#1F3864',
     'grid.alpha':       0.4,
 })
+
+# ── Tabs ───────────────────────────────────────────────────────────────────────
+tab1, tab2, tab3 = st.tabs([
+    "📊 Data Overview",
+    "🤖 Clustering Results",
+    "🏆 Method Comparison"
+])
 
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -335,7 +278,6 @@ with tab1:
 # ══════════════════════════════════════════════════════════════════════════════
 with tab2:
 
-    # PCA
     @st.cache_data
     def run_pca(arr, vt):
         pf = PCA().fit(arr)
@@ -348,7 +290,6 @@ with tab2:
 
     X_pca, X_2d, n_comp, cumvar, ev2d = run_pca(X_scaled_arr, pca_var)
 
-    # Best K
     @st.cache_data
     def find_best_k(arr, kmax, ss, ni):
         Kr, ins, sils = list(range(2, kmax+1)), [], []
@@ -367,7 +308,7 @@ with tab2:
     km_labels = kmeans.fit_predict(X_pca)
     df['Cluster'] = km_labels
 
-    # ── Metrics
+    # Metrics
     st.markdown('<div class="sec">📍 Optimal K Selection</div>', unsafe_allow_html=True)
     c1, c2, c3 = st.columns(3)
     c1.metric("Best K",           best_k)
@@ -378,20 +319,19 @@ with tab2:
     with c1:
         fig, ax = plt.subplots(figsize=(5, 3))
         ax.plot(K_range, inertias, marker='o', color='#4A90D9', linewidth=2, markersize=5)
-        ax.set_title('Elbow — Inertia vs K', fontweight='bold', fontsize=9, color='#BDD7EE')
-        ax.set_xlabel('K'); ax.set_ylabel('Inertia')
-        ax.grid(True, alpha=0.3)
+        ax.set_title('Elbow — Inertia vs K', fontweight='bold', fontsize=9)
+        ax.set_xlabel('K'); ax.set_ylabel('Inertia'); ax.grid(True, alpha=0.3)
         plt.tight_layout(); st.pyplot(fig, use_container_width=True); plt.close()
     with c2:
         fig, ax = plt.subplots(figsize=(5, 3))
         ax.plot(K_range, sil_scores, marker='o', color='#55A868', linewidth=2, markersize=5)
         ax.axvline(x=best_k, color='#FF6B6B', linestyle='--', label=f'Best k={best_k}')
-        ax.set_title('Silhouette Score vs K', fontweight='bold', fontsize=9, color='#BDD7EE')
+        ax.set_title('Silhouette Score vs K', fontweight='bold', fontsize=9)
         ax.set_xlabel('K'); ax.set_ylabel('Silhouette')
         ax.legend(fontsize=8); ax.grid(True, alpha=0.3)
         plt.tight_layout(); st.pyplot(fig, use_container_width=True); plt.close()
 
-    # ── 2D Scatter
+    # 2D Scatter
     st.markdown('<div class="sec">🗺️ Cluster Visualization — 2D PCA</div>', unsafe_allow_html=True)
     fig, ax = plt.subplots(figsize=(10, 5))
     for c in range(best_k):
@@ -399,7 +339,7 @@ with tab2:
         ax.scatter(X_2d[mask,0], X_2d[mask,1],
                    label=f'C{c} (n={mask.sum()})',
                    color=plt.cm.tab10.colors[c], alpha=0.6, s=10)
-    ax.set_title('Student Clusters — 2D PCA Projection', fontweight='bold', color='#BDD7EE')
+    ax.set_title('Student Clusters — 2D PCA Projection', fontweight='bold')
     ax.set_xlabel(f'PC1 ({ev2d[0]*100:.1f}% var)')
     ax.set_ylabel(f'PC2 ({ev2d[1]*100:.1f}% var)')
     ax.legend(markerscale=2, fontsize=8, ncol=2,
@@ -407,7 +347,7 @@ with tab2:
     ax.grid(True, alpha=0.2)
     plt.tight_layout(); st.pyplot(fig, use_container_width=True); plt.close()
 
-    # ── Cluster sizes
+    # Cluster sizes
     st.markdown('<div class="sec">📊 Cluster Distribution</div>', unsafe_allow_html=True)
     dist = df['Cluster'].value_counts().sort_index().reset_index()
     dist.columns = ['Cluster','Count']
@@ -420,31 +360,30 @@ with tab2:
         dist.plot(kind='bar', x='Cluster', y='Count', ax=ax,
                   color=list(plt.cm.tab10.colors[:best_k]),
                   edgecolor='#0d1b2a', legend=False)
-        ax.set_title('Cluster Sizes', fontweight='bold', fontsize=9, color='#BDD7EE')
+        ax.set_title('Cluster Sizes', fontweight='bold', fontsize=9)
         ax.set_xlabel('Cluster'); ax.set_ylabel('Count')
         ax.grid(True, alpha=0.2, axis='y')
         plt.tight_layout(); st.pyplot(fig, use_container_width=True); plt.close()
 
-    # ── Interest heatmap
+    # Interest heatmap
     st.markdown('<div class="sec">🔥 Interest Profile Heatmap</div>', unsafe_allow_html=True)
     cluster_profile = df.groupby('Cluster')[KEYWORD_COLS].mean()
     fig, ax = plt.subplots(figsize=(12, best_k+4))
     sns.heatmap(cluster_profile.T, annot=True, fmt='.2f', cmap='YlOrRd',
                 linewidths=0.4, ax=ax,
                 cbar_kws={'label':'Avg Mentions'},
-                annot_kws={'size': 8},
-                linecolor='#0d1b2a')
-    ax.set_title('Avg Keyword Mentions per Cluster', fontweight='bold', color='#BDD7EE')
+                annot_kws={'size': 8}, linecolor='#0d1b2a')
+    ax.set_title('Avg Keyword Mentions per Cluster', fontweight='bold')
     plt.tight_layout(); st.pyplot(fig, use_container_width=True); plt.close()
 
-    # ── Theme profile
+    # Theme profile
     st.markdown('<div class="sec">🎨 Theme-Level Interest by Cluster</div>', unsafe_allow_html=True)
     theme_profile = df.groupby('Cluster')[[f'theme_{t}' for t in THEMES]].mean()
     theme_profile.columns = list(THEMES.keys())
     fig, ax = plt.subplots(figsize=(10, 4))
     theme_profile.T.plot(kind='bar', ax=ax, colormap='tab10',
                          edgecolor='#0d1b2a', width=0.7)
-    ax.set_title('Theme Interest by Cluster', fontweight='bold', color='#BDD7EE')
+    ax.set_title('Theme Interest by Cluster', fontweight='bold')
     ax.set_xlabel('Theme'); ax.set_ylabel('Avg Mentions')
     plt.xticks(rotation=15, ha='right')
     ax.legend(title='Cluster', fontsize=8, bbox_to_anchor=(1.01,1),
@@ -453,7 +392,7 @@ with tab2:
     plt.tight_layout(); st.pyplot(fig, use_container_width=True); plt.close()
     st.dataframe(theme_profile.round(3), use_container_width=True)
 
-    # ── Demographic profile
+    # Demographic profile
     st.markdown('<div class="sec">👥 Demographic Profile per Cluster</div>', unsafe_allow_html=True)
     demo = df.groupby('Cluster').agg(
         Count       = ('Cluster', 'count'),
@@ -473,23 +412,22 @@ with tab2:
         )
         for patch, color in zip(bp['boxes'], plt.cm.tab10.colors[:best_k]):
             patch.set_facecolor(color); patch.set_alpha(0.7)
-        ax.set_title('Age by Cluster', fontweight='bold', color='#BDD7EE')
+        ax.set_title('Age by Cluster', fontweight='bold')
         ax.set_xlabel('Cluster'); ax.set_ylabel('Age')
         ax.grid(True, alpha=0.2)
         plt.tight_layout(); st.pyplot(fig, use_container_width=True); plt.close()
     with c2:
         fig, ax = plt.subplots(figsize=(5, 4))
         df.groupby('Cluster')['gender'].value_counts(normalize=True).unstack().plot(
-            kind='bar', ax=ax, colormap='Set2',
-            edgecolor='#0d1b2a', width=0.6)
-        ax.set_title('Gender Ratio by Cluster', fontweight='bold', color='#BDD7EE')
+            kind='bar', ax=ax, colormap='Set2', edgecolor='#0d1b2a', width=0.6)
+        ax.set_title('Gender Ratio by Cluster', fontweight='bold')
         ax.tick_params(axis='x', rotation=0)
         ax.legend(title='Gender', fontsize=8,
                   facecolor='#0d1b2a', edgecolor='#2E5496', labelcolor='#BDD7EE')
         ax.grid(True, alpha=0.2, axis='y')
         plt.tight_layout(); st.pyplot(fig, use_container_width=True); plt.close()
 
-    # ── Trend over graduation year
+    # Trend over graduation year
     st.markdown('<div class="sec">📅 Trend Analysis — Over Graduation Year</div>',
                 unsafe_allow_html=True)
     theme_list = list(THEMES.keys())
@@ -502,7 +440,7 @@ with tab2:
                 ax.plot(trend.index, trend[col_name], marker='o',
                         linewidth=1.5, color=plt.cm.tab10.colors[i % 10],
                         label=f'C{col_name}', markersize=4)
-            ax.set_title(theme, fontweight='bold', fontsize=9, color='#BDD7EE')
+            ax.set_title(theme, fontweight='bold', fontsize=9)
             ax.set_xlabel('Grad Year', fontsize=8)
             ax.set_ylabel('Avg Mentions', fontsize=8)
             ax.legend(title='C', fontsize=7, ncol=2,
@@ -511,7 +449,7 @@ with tab2:
             plt.tight_layout()
             col_widget.pyplot(fig, use_container_width=True); plt.close()
 
-    # ── Download
+    # Download
     st.markdown('<div class="sec">⬇️ Download Cluster Assignments</div>', unsafe_allow_html=True)
     out = df[['gradyear','gender','age','NumberOffriends','Cluster']].copy()
     st.download_button(
@@ -581,7 +519,7 @@ with tab3:
                color_threshold=linked[-(best_k)+1, 2])
     ax.axhline(y=linked[-(best_k)+1, 2], color='#FF6B6B',
                linestyle='--', label=f'Cut k={best_k}')
-    ax.set_title(f'Dendrogram — {best_link} linkage', fontweight='bold', color='#BDD7EE')
+    ax.set_title(f'Dendrogram — {best_link} linkage', fontweight='bold')
     ax.legend(fontsize=8); ax.grid(True, alpha=0.2)
     plt.tight_layout(); st.pyplot(fig, use_container_width=True); plt.close()
 
@@ -615,7 +553,7 @@ with tab3:
         fig, ax = plt.subplots(figsize=(5, 4))
         ax.plot(k_dist, color='#4A90D9', linewidth=1.5)
         ax.axhline(y=sug_eps, color='#FF6B6B', linestyle='--', label=f'eps={sug_eps}')
-        ax.set_title('K-Distance Plot (k=5)', fontweight='bold', fontsize=9, color='#BDD7EE')
+        ax.set_title('K-Distance Plot (k=5)', fontweight='bold', fontsize=9)
         ax.set_xlabel('Points'); ax.set_ylabel('5-NN Distance')
         ax.legend(fontsize=8); ax.grid(True, alpha=0.2)
         plt.tight_layout(); st.pyplot(fig, use_container_width=True); plt.close()
@@ -658,7 +596,7 @@ with tab3:
             ax.scatter(X_2d[mask,0], X_2d[mask,1], c=[color],
                        label='Noise' if lbl==-1 else f'C{lbl}',
                        alpha=0.5, s=8)
-        ax.set_title(title, fontsize=9, fontweight='bold', color='#BDD7EE')
+        ax.set_title(title, fontsize=9, fontweight='bold')
         ax.set_xlabel('PC1', fontsize=8); ax.set_ylabel('PC2', fontsize=8)
         ax.legend(markerscale=2, fontsize=7,
                   facecolor='#0d1b2a', edgecolor='#2E5496', labelcolor='#BDD7EE')
@@ -693,8 +631,9 @@ with tab3:
         ([km_ch,  hc_ch,  db_ch],  'Calinski-Harabasz ↑'),
     ]:
         fig, ax = plt.subplots(figsize=(8, 3))
-        bars = ax.bar(methods_lbl, vals, color=colors_m, edgecolor='#0d1b2a', width=0.4)
-        ax.set_title(title, fontweight='bold', color='#BDD7EE')
+        bars = ax.bar(methods_lbl, vals, color=colors_m,
+                      edgecolor='#0d1b2a', width=0.4)
+        ax.set_title(title, fontweight='bold')
         ax.set_ylim(0, max(vals)*1.3)
         ax.grid(True, alpha=0.2, axis='y')
         for bar, v in zip(bars, vals):
